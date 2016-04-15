@@ -1,0 +1,26 @@
+web:
+  image: nginx:latest
+  ports:
+    - "8080:80"
+  volumes_from:
+    - code
+  links:
+    - php
+php:
+  image: php:5.6-fpm
+  volumes_from:
+    - code
+  links:
+    - db
+db:
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: abcABC123
+    MYSQL_USER: mysql_user
+    MYSQL_DATABASE: mage
+    MYSQL_PASSWORD: password
+code:
+  image: busybox
+  volumes:
+    - ./.devops/vhosts/mage.conf:/etc/nginx/conf.d/mage.conf
+    - ./src/mage:/var/www/html

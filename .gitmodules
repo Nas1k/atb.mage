@@ -1,0 +1,3 @@
+[submodule "src/mage"]
+    path = src/mage
+    url = git@github.com:AtypicalBrandsLLC/atb-ecomm.mage.git
