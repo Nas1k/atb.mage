@@ -9,7 +9,7 @@ git clone git@github.com:nas1k/atb.mage.git
 ```bash
 docker-composer up
 ```
-4) Go to mysql container
+4) Go to mysql container and load your dump to database
 ```bash
 docker exec -it atbmage_db_1 bash
 mysql -uroot -pabcABC123 mage < dump.sql
