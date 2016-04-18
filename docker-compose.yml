@@ -7,7 +7,7 @@ web:
   links:
     - php
 php:
-  image: php:5.6-fpm
+  image: nas1k/php56-fpm
   volumes_from:
     - code
   links:
@@ -19,8 +19,15 @@ db:
     MYSQL_USER: mysql_user
     MYSQL_DATABASE: mage
     MYSQL_PASSWORD: password
+  volumes_from:
+    - seed
 code:
   image: busybox
   volumes:
     - ./.devops/vhosts/mage.conf:/etc/nginx/conf.d/mage.conf
-    - ./src/mage:/var/www/html
+    - ./src/atb-ecomm.mage:/var/www/html
+    - ./devops/config/local.xml:/var/www/html/public-web/app/etc/local.xml
+seed:
+  image: busybox
+  volumes:
+    - ./src/seed:/seed
